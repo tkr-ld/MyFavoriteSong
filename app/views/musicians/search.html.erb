@@ -1,0 +1,16 @@
+<h1>検索画面</h1>
+<%= form_tag(musicians_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+<ul>
+<% if @musicians %>
+  <% @musicians.each do |musician| %>
+    <li>
+    <%= link_to musician.name, musician %>
+    </li>
+  <% end %>
+<% else %>
+  <li><%= link_to 'Add Musician', new_musician_path %></li>
+<% end %>
+<ul>

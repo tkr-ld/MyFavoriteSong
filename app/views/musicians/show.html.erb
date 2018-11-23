@@ -1,0 +1,16 @@
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @musician.name %></h3>
+      </div>
+      <div class="panel-body">
+        <%= image_tag @musician.image.to_s %>
+      </div>
+    </div>
+  </aside>
+  <div class="col-xs-8">
+      <h3><%= @musician.detail %></h3>
+      <h3>セットリスト一覧</h3>
+  </div>
+</div>
