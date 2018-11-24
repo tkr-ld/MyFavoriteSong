@@ -7,6 +7,7 @@ class MusiciansController < ApplicationController
   
   def show
     @musician = Musician.find(params[:id])
+    @setlists = Setlist.where(musician_id: @musician.id).order(:date)
   end
 
   def new

@@ -3,6 +3,8 @@ class SetlistsController < ApplicationController
   end
 
   def show
+    @setlist = Setlist.find(params[:id])
+    @musician = Musician.find(@setlist.musician_id)
   end
 
   def new
