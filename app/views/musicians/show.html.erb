@@ -11,6 +11,7 @@
   </aside>
   <div class="col-xs-8">
       <h3><%= @musician.detail %></h3>
+      <h3><%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id) %></h3>
       <h3>セットリスト一覧</h3>
   </div>
 </div>
