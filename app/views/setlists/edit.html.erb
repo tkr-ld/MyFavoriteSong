@@ -1,2 +1,31 @@
-<h1>Setlists#edit</h1>
-<p>Find me in app/views/setlists/edit.html.erb</p>
+<div class="row">
+  <div class="col-xs-8">
+    <ul>
+      <li><%= @setlist.title %></li>
+      <li><%= @musician.name %></li>
+      <li><%= @setlist.date %></li>
+      <li><%= @setlist.place %></li>
+    </ul>
+    
+    <%= form_for(@setlist.songs.build, url: add_song_setlist_path(@setlist), html: { method: :patch }) do |f| %>
+        <%= f.number_field :order %>
+        <%= f.text_field :title %>
+        
+        <%=f.hidden_field :setlist_id, :value => @setlist.id %>
+        <%= f.submit '+Add Song', class: 'btn btn-primary btn-block' %>
+    <% end %>
+    
+    <%= form_for @setlist do |f| %>
+    
+      <%= f.fields_for :songs do |song| %>
+        <%= song.number_field :order %>
+        <%= song.text_field :title %>
+        <br>
+      <% end %>
+      
+      <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
+      <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
+    
+    <% end %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181123090952) do
+ActiveRecord::Schema.define(version: 20181124061528) do
 
   create_table "musicians", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20181123090952) do
     t.index ["user_id"], name: "index_setlists_on_user_id", using: :btree
   end
 
+  create_table "songs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "setlist_id"
+    t.string   "title"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["setlist_id"], name: "index_songs_on_setlist_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
@@ -42,4 +51,5 @@ ActiveRecord::Schema.define(version: 20181123090952) do
 
   add_foreign_key "setlists", "musicians"
   add_foreign_key "setlists", "users"
+  add_foreign_key "songs", "setlists"
 end

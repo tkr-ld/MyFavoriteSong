@@ -12,6 +12,10 @@ Rails.application.routes.draw do
             get :search
         end
     end
-    resources :setlists
+    resources :setlists do
+        member do
+            patch :add_song
+        end
+    end
     
 end
