@@ -7,12 +7,19 @@
       <li><%= @setlist.place %></li>
     </ul>
     
-    <%= form_for(@setlist.songs.build, url: add_song_setlist_path(@setlist), html: { method: :patch }) do |f| %>
-        <%= f.number_field :order %>
-        <%= f.text_field :title %>
+    <!--<%= form_for(@setlist.songs.build, url: add_song_setlist_path(@setlist), html: { method: :patch }) do |f| %>-->
+    <!--    <%= f.number_field :order %>-->
+    <!--    <%= f.text_field :title %>-->
         
-        <%=f.hidden_field :setlist_id, :value => @setlist.id %>
-        <%= f.submit '+Add Song', class: 'btn btn-primary btn-block' %>
+    <!--    <%=f.hidden_field :setlist_id, :value => @setlist.id %>-->
+    <!--    <%= f.submit '+Add Song', class: 'btn btn-primary btn-block btn-xs' %>-->
+    <!--<% end %>-->
+    
+    <%= form_tag(add_song_setlist_path(@setlist), method: :patch) do %>
+        <%= number_field_tag :order %>
+        <%= text_field_tag :title %>
+
+        <%= submit_tag("+Add Song", class: 'btn btn-primary btn-block btn-xs') %>
     <% end %>
     
     <%= form_for @setlist do |f| %>
@@ -24,7 +31,7 @@
       <% end %>
       
       <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
-      <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
+      <%= f.submit 'Registration', class: 'btn btn-primary btn-block btn-xs' %>
     
     <% end %>
   </div>

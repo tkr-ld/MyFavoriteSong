@@ -7,7 +7,7 @@
       <li><%= @setlist.place %></li>
     </ul>
     
-    <h3><%= link_to 'edit Setlist', edit_setlist_path(setlist_id: @setlist.id) %></h3> <!-- 引数渡す必要ないかも-->
+    <h5><%= link_to 'edit Setlist', edit_setlist_path(setlist_id: @setlist.id) %></h5> <!-- 引数渡す必要ないかも-->
       <% @songs.each do |song| %>
         <li class="media"><%= song.title %></li>
       <% end %>

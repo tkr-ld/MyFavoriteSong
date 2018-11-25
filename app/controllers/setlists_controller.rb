@@ -66,8 +66,12 @@ class SetlistsController < ApplicationController
     params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :order])
   end
   
+  # def song_params
+  #   params.require(:song).permit(:title, :order)
+  # end
+  
   def song_params
-    params.require(:song).permit(:title, :order)
+    params.permit(:title, :order)
   end
   
 end

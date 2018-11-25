@@ -14,13 +14,9 @@
       <h3><%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id) %></h3>
       <h3>セットリスト一覧</h3>
         <% @setlists.each do |setlist| %>
-          <li class="media">
             <div class="media-body">
-              <div>
-                <%= link_to setlist.title, setlist_path(setlist) %> <span class="text-muted">date <%= setlist.date %></span>
-              </div>
+                <h3><%= link_to setlist.title, setlist_path(setlist) %> <span class="text-muted">date <%= setlist.date %></span></h3>
             </div>
-          </li>
         <% end %>
   </div>
 </div>
