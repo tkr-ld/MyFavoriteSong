@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @favorites = @user.favorites
   end
 
   def new
@@ -19,6 +20,11 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  def favorites
+    @user = User.find(params[:id])
+    @favorites = @user.favorites
   end
   
   private

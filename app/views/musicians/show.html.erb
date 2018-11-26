@@ -8,6 +8,7 @@
         <%= image_tag @musician.image.to_s %>
       </div>
     </div>
+    <%= render 'musician_relationships/favorite_button', musician: @musician %>
   </aside>
   <div class="col-xs-8">
       <h3><%= @musician.detail %></h3>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181124061528) do
+ActiveRecord::Schema.define(version: 20181126110124) do
+
+  create_table "musician_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "musician_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["musician_id"], name: "index_musician_relationships_on_musician_id", using: :btree
+    t.index ["user_id"], name: "index_musician_relationships_on_user_id", using: :btree
+  end
 
   create_table "musicians", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -18,6 +27,15 @@ ActiveRecord::Schema.define(version: 20181124061528) do
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "setlist_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "setlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["setlist_id"], name: "index_setlist_relationships_on_setlist_id", using: :btree
+    t.index ["user_id"], name: "index_setlist_relationships_on_user_id", using: :btree
   end
 
   create_table "setlists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -49,6 +67,10 @@ ActiveRecord::Schema.define(version: 20181124061528) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "musician_relationships", "musicians"
+  add_foreign_key "musician_relationships", "users"
+  add_foreign_key "setlist_relationships", "setlists"
+  add_foreign_key "setlist_relationships", "users"
   add_foreign_key "setlists", "musicians"
   add_foreign_key "setlists", "users"
   add_foreign_key "songs", "setlists"

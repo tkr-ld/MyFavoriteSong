@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
     
     get 'signup', to: 'users#new'
-    resources :users, only: [:index, :show, :new, :create]
+    resources :users, only: [:index, :show, :new, :create] do
+        member do
+          get :favorites
+        end
+    end
+  
     resources :musicians, only: [:index, :show, :new, :create] do
         collection do
             get :search
@@ -17,5 +22,7 @@ Rails.application.routes.draw do
             patch :add_song
         end
     end
+    
+    resources :musician_relationships, only: [:create, :destroy]
     
 end
