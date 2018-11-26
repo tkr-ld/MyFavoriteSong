@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorites = @user.favorites
+    @joinlives = @user.joinlives
   end
 
   def new

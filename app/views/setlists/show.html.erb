@@ -6,8 +6,11 @@
       <li><%= @setlist.date %></li>
       <li><%= @setlist.place %></li>
     </ul>
-    
+    <%= render 'setlist_relationships/join_button', setlist: @setlist %>
     <h5><%= link_to 'edit Setlist', edit_setlist_path(setlist_id: @setlist.id) %></h5> <!-- 引数渡す必要ないかも-->
+    <% if current_user == @setlist.user %>
+      <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+    <% end %>
       <% @songs.each do |song| %>
         <li class="media"><%= song.title %></li>
       <% end %>

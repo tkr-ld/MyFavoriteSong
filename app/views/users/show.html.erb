@@ -11,9 +11,10 @@
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
-      <li><a>FavoriteMusician</a></li>
+      <li><a>Favorite Musician</a></li>
       <%= render 'musicians', musicians: @favorites %>
-      <li><a href="#">ParticipatedLive</a></li>
+      <li><a href="#">Joined Live</a></li>
+      <%= render 'setlists', setlists: @joinlives %>
     </ul>
   </div>
 </div>

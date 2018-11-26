@@ -1,6 +1,6 @@
 class SetlistsController < ApplicationController
-  def index
-  end
+  before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy]
 
   def show
     @setlist = Setlist.find(params[:id])
@@ -45,6 +45,10 @@ class SetlistsController < ApplicationController
   end
 
   def destroy
+    @musician = @setlist.musician
+    @setlist.destroy
+    flash[:success] = 'セットリストを削除しました。'
+    redirect_to @musician
   end
   
   def add_song
@@ -72,6 +76,13 @@ class SetlistsController < ApplicationController
   
   def song_params
     params.permit(:title, :order)
+  end
+  
+  def correct_user
+    @setlist = current_user.setlists.find_by(id: params[:id])
+    unless @setlist
+      redirect_to root_url
+    end
   end
   
 end

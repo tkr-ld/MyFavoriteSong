@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     end
     
     resources :musician_relationships, only: [:create, :destroy]
+    resources :setlist_relationships, only: [:create, :destroy]
     
 end
