@@ -5,7 +5,7 @@
         <h3 class="panel-title"><%= @musician.name %></h3>
       </div>
       <div class="panel-body">
-        <%= image_tag @musician.image.to_s %>
+          <%= image_tag @musician.image.to_s %>
       </div>
     </div>
     <%= render 'musician_relationships/favorite_button', musician: @musician %>

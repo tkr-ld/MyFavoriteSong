@@ -18,10 +18,10 @@ class MusiciansController < ApplicationController
     @musician = Musician.new(musician_params)
 
     if @musician.save
-      flash[:success] = 'ユーザを登録しました。'
+      flash[:success] = 'ミュージシャンを登録しました。'
       redirect_to @musician
     else
-      flash.now[:danger] = 'ユーザの登録に失敗しました。'
+      flash.now[:danger] = 'ミュージシャンの登録に失敗しました。'
       render :new
     end
   end
