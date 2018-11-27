@@ -54,6 +54,7 @@ class SetlistsController < ApplicationController
   def add_song
     @setlist = Setlist.find(params[:id])
     @song = @setlist.songs.build(song_params)
+    @musician = @setlist.musician
     
     if @song.save
       flash[:success] = '曲を追加しました。'
@@ -62,6 +63,14 @@ class SetlistsController < ApplicationController
       flash.now[:danger] = '曲の追加に失敗しました。'
       render :edit
     end
+  end
+  
+  def del_song
+    @song = Song.find(params[:song_id])
+    @setlist = @song.setlist
+    @song.destroy
+    flash[:success] = '曲を削除しました。'
+    redirect_to @setlist
   end
   
   private

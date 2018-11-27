@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :setlists do
         member do
             patch :add_song
+            delete :del_song
         end
     end
     
