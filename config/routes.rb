@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         end
     end
   
-    resources :musicians, only: [:index, :show, :new, :create] do
+    resources :musicians, only: [:index, :show, :new, :create, :edit, :update] do
         collection do
             get :search
         end

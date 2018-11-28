@@ -1,5 +1,5 @@
 class SetlistsController < ApplicationController
-  before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_user_logged_in, only: [:new, :create, :destroy]
   before_action :correct_user, only: [:destroy]
 
   def show
