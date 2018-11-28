@@ -52,6 +52,6 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # end
   
   def public_id
-    musician.id
+    model.id
   end
 end
