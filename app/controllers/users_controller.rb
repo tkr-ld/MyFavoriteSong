@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorites = @user.favorites
     @joinlives = @user.joinlives
+    user_counts(@user)
   end
 
   def new

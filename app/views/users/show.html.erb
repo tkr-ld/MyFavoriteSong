@@ -11,9 +11,9 @@
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
-      <li><a>Favorite Musician</a></li>
+      <li><a>Favorite Musician<span class="badge"><%= @count_favorites %></span></a></li>
       <%= render 'musicians', musicians: @favorites %>
-      <li><a href="#">Joined Live</a></li>
+      <li><a href="#">Joined Live<span class="badge"><%= @count_joined %></span></a></li>
       <%= render 'setlists', setlists: @joinlives %>
     </ul>
   </div>

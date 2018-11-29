@@ -15,8 +15,4 @@ class ApplicationController < ActionController::Base
     @count_favorites = user.favorites.count
     @count_joined = user.joinlives.count
   end
-  
-  def musician_counts(musician)
-    @count_setlists = user.setlists.count
-  end
 end

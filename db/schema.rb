@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181126110124) do
+ActiveRecord::Schema.define(version: 20181129163947) do
 
   create_table "musician_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20181126110124) do
     t.integer  "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "trackorder"
     t.index ["setlist_id"], name: "index_songs_on_setlist_id", using: :btree
   end
 

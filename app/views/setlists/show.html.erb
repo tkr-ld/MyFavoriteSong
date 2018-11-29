@@ -16,9 +16,9 @@
           <td><%= @setlist.place %></td>
           <td><%= render 'setlist_relationships/join_button', setlist: @setlist %></td>
         </tr>
+        </table>
     </div>
     <div>
-    <% @songs.each do |song| %> 
         <table class="table">
         <tr>
           <th class="text-right"></th>
@@ -30,12 +30,14 @@
             <% end %>
           </th>
         </tr>
+        <% @songs.each do |song| %> 
         <tr>
-          <td class="text-right"><%= song.order %></td>
+          <td class="text-right"><%= song.trackorder %></td>
           <td class="text-left"><%= song.title %></td>
         </tr>
       <% end %>
+      </table>
     </div>
+    <%= link_to musician_path(@musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @musician.name %><% end %>
   </div>
-  
 </div>

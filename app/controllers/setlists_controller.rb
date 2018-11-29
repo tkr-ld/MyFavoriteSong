@@ -5,7 +5,7 @@ class SetlistsController < ApplicationController
   def show
     @setlist = Setlist.find(params[:id])
     @musician = Musician.find(@setlist.musician_id)
-    @songs = @setlist.songs
+    @songs = @setlist.songs.order('trackorder ASC')
   end
 
   def new
@@ -76,15 +76,15 @@ class SetlistsController < ApplicationController
   private
 
   def setlist_params
-    params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :order])
+    params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :trackorder])
   end
   
   # def song_params
-  #   params.require(:song).permit(:title, :order)
+  #   params.require(:song).permit(:title, :trackorder)
   # end
   
   def song_params
-    params.permit(:title, :order)
+    params.permit(:title, :trackorder)
   end
   
   def correct_user
