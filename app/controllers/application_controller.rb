@@ -10,4 +10,13 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+  
+  def user_counts(user)
+    @count_favorites = user.favorites.count
+    @count_joined = user.joinlives.count
+  end
+  
+  def musician_counts(musician)
+    @count_setlists = user.setlists.count
+  end
 end

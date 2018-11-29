@@ -1,11 +1,21 @@
 <div class="row">
   <div class="col-xs-8">
-    <ul>
-      <li><%= @setlist.title %></li>
-      <li><%= @musician.name %></li>
-      <li><%= @setlist.date %></li>
-      <li><%= @setlist.place %></li>
-    </ul>
+    <div>
+        <table class="table" align="left">
+        <tr>
+          <th class="text-left">ライブ名</th>
+          <th class="text-left">ミュージシャン名</th>
+          <th class="text-left">場所</th>
+          <th class="text-left">日付</th>
+        </tr>
+        <tr>
+          <td><%= @setlist.title %></td>
+          <td><%= @musician.name %></td>
+          <td><%= @setlist.date %></td>
+          <td><%= @setlist.place %></td>
+        </tr>
+        </table>
+    </div>
     
     <!--<%= form_for(@setlist.songs.build, url: add_song_setlist_path(@setlist), html: { method: :patch }) do |f| %>-->
     <!--    <%= f.number_field :order %>-->
@@ -15,27 +25,42 @@
     <!--    <%= f.submit '+Add Song', class: 'btn btn-primary btn-block btn-xs' %>-->
     <!--<% end %>-->
     
-    <%= form_tag(add_song_setlist_path(@setlist), method: :patch) do %>
-        <%= number_field_tag :order %>
-        <%= text_field_tag :title %>
+    <div class="form-group">
+      <div class="form-inline">
+        <%= form_tag(add_song_setlist_path(@setlist), method: :patch, class: 'form_inline') do %>
+            <%= label :order, 'order' %>
+            <%= number_field_tag :order, '', class: 'form-control' %>
+            <%= label :title, 'title' %>
+            <%= text_field_tag :title, '', class: 'form-control' %>
 
-        <%= submit_tag("+Add Song", class: 'btn btn-primary btn-block btn-xs') %>
-    <% end %>
+            <%= button_tag( class: "btn btn-primary btn-xs") do %>
+              <%= content_tag :span, "Add Song", class: "glyphicon glyphicon-plus" %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <br>
     
+    <div class="form-group">
     <%= form_for @setlist do |f| %>
       <% count = @setlist.songs.count %>
       <%= f.fields_for :songs do |song| %>
         <% if count > song.index %>
-          <%= song.number_field :order %>
-          <%= song.text_field :title %>
+        <div class="form-inline">
+          <%= song.label :order, 'Order' %>
+          <%= song.number_field :order, class: 'form-control' %>
+          <%= song.label :title, 'Title' %>
+          <%= song.text_field :title, class: 'form-control' %>
           <%= link_to "Delete", del_song_setlist_path(song_id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+        </div>
           <br>
         <% end %>
       <% end %>
       
       <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
-      <%= f.submit 'Registration', class: 'btn btn-primary btn-block btn-xs' %>
+      <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
     
     <% end %>
+    </div>
   </div>
 </div>

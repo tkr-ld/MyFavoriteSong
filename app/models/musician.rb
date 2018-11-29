@@ -11,6 +11,10 @@ class Musician < ApplicationRecord
     end
   end
   
+  def self.counts
+    self.setlists.count
+  end
+  
   has_many :setlists
   has_many :favorite_relationships
   has_many :favorited, through: :favorite_relationships, source: :user

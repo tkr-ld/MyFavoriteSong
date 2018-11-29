@@ -8,17 +8,28 @@
         <%= image_tag(@musician.image.url) if @musician.image.present? %>
       </div>
     </div>
-    <h4><%= link_to 'edit musician', edit_musician_path(@musician) %></h4>
     <%= render 'musician_relationships/favorite_button', musician: @musician %>
   </aside>
   <div class="col-xs-8">
-      <h3><%= @musician.detail %></h3>
-      <h4><%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id) %></h4>
-      <h3>セットリスト一覧</h3>
-        <% @setlists.each do |setlist| %>
-            <div class="media-body">
-                <h3><%= link_to setlist.title, setlist_path(setlist) %> <span class="text-muted">date <%= setlist.date %></span></h3>
-            </div>
+      <div class="jumbotron">
+        <h4><%= @musician.detail %></h4>
+      </div>
+      <%= link_to 'edit musician', edit_musician_path(@musician), class: 'btn btn-success btn-xs'%>
+      <div class="page-header">
+      <h3>セットリスト一覧　<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></h3>
+      </div>
+        <table class="table">
+        <tr>
+          <th class="text-left">ライブ名</th>
+          <th class="text-left">場所</th>
+          <th class="text-left">日付</th>
+        </tr>
+        <% @setlists.each do |setlist|  %>
+          <tr>
+            <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+            <td><span class="text-muted"><%= setlist.place %></span></td>
+            <td><span class="text-muted"><%= setlist.date %></span></td>
+          </tr>
         <% end %>
   </div>
 </div>

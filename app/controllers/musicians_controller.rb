@@ -3,7 +3,9 @@ class MusiciansController < ApplicationController
 
   def index
     @musicians = Musician.search(params[:search])
-    logger.debug(@musicians.map(&:name))
+    #logger.debug(@musicians.map(&:name))
+    number = @musicians.count
+    flash.now[:success] = number.to_s + '件の検索結果が見つかりました'
     render :search
   end
   
