@@ -1,13 +1,9 @@
 <% if musicians.any? %>
-  <ul class="media-list">
-    <% musicians.each do |musician| %>
-      <li class="media">
-        <div class="media-body">
-          <div>
-            <p><%= link_to musician.name, musician_path(musician) %></p>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <table class="table">
+  <% musicians.each do |musician| %>
+    <tr class="text-left">
+      <td><%= link_to musician_path(musician) do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>

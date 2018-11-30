@@ -9,12 +9,12 @@
       </div>
     </div>
   </aside>
-  <div class="col-xs-8">
-    <ul class="nav nav-tabs nav-justified">
-      <li><a>Favorite Musician<span class="badge"><%= @count_favorites %></span></a></li>
+      <div class="col-xs-8 col-md-4">
+        <h3>Favorite Musician<span class="badge"><%= @count_favorites %></span></h3>
       <%= render 'musicians', musicians: @favorites %>
-      <li><a href="#">Joined Live<span class="badge"><%= @count_joined %></span></a></li>
+      </div>
+      <div class="col-xs-8 col-md-4">
+        <h3>Joined Live<span class="badge"><%= @count_joined %></span></h3>
       <%= render 'setlists', setlists: @joinlives %>
-    </ul>
-  </div>
+      </div>
 </div>

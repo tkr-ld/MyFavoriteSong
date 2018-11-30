@@ -1,13 +1,9 @@
 <% if setlists.any? %>
-  <ul class="media-list">
-    <% setlists.each do |setlist| %>
-      <li class="media">
-        <div class="media-body">
-          <div>
-            <p><%= link_to setlist.title, setlist_path(setlist) %></p>
-          </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <table class="table">
+  <% setlists.each do |setlist| %>
+    <tr class="text-left">
+      <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
