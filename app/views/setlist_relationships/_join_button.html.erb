@@ -2,7 +2,7 @@
 <% if current_user.joinning?(setlist) %>
     <%= form_for(current_user.setlist_relationships.find_by(setlist_id: setlist.id), html: { method: :delete }) do |f| %>
       <%= hidden_field_tag :setlist_id, setlist.id %>
-      <%= f.submit 'Unjoin', class: 'btn btn-secondary btn-md' %>
+      <%= f.submit 'Unjoin', class: 'btn btn-default btn-md' %>
     <% end %>
   <% else %>
     <%= form_for(current_user.setlist_relationships.build) do |f| %>

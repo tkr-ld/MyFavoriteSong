@@ -6,17 +6,21 @@
       </div>
       <div class="panel-body">
         <%= image_tag(@musician.image.url) if @musician.image.present? %>
+        <br>
+        <%= link_to 'edit musician', edit_musician_path(@musician)%>
       </div>
     </div>
-    <%= render 'musician_relationships/favorite_button', musician: @musician %>
+    <div class="center-block">
+      <%= render 'musician_relationships/favorite_button', musician: @musician %>
+    </div>
+    
   </aside>
   <div class="col-xs-8">
       <div class="jumbotron">
         <h4><%= @musician.detail %></h4>
       </div>
-      <%= link_to 'edit musician', edit_musician_path(@musician), class: 'btn btn-success btn-xs'%>
       <div class="page-header">
-      <h3>セットリスト一覧<% if logged_in? %><%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%><% end %></h3>
+      <h3>セットリスト一覧<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></h3>
       </div>
         <table class="table">
         <tr>

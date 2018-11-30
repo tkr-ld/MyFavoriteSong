@@ -3,6 +3,7 @@
   <% setlists.each do |setlist| %>
     <tr class="text-left">
       <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+      <td><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
     </tr>
   <% end %>
   </table>
