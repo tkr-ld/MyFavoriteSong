@@ -16,7 +16,7 @@
       </div>
       <%= link_to 'edit musician', edit_musician_path(@musician), class: 'btn btn-success btn-xs'%>
       <div class="page-header">
-      <h3>セットリスト一覧　<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></h3>
+      <h3>セットリスト一覧<% if logged_in? %><%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%><% end %></h3>
       </div>
         <table class="table">
         <tr>
