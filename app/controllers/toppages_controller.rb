@@ -3,6 +3,7 @@ class ToppagesController < ApplicationController
     if logged_in?
       redirect_to user_path(current_user)
     end
+    render :layout => nil
   end
 end
 
