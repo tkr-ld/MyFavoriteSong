@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="col-xs-12">
     <div>
         <table class="table">
         <tr>
@@ -23,7 +23,7 @@
         <tr>
           <th class="text-right"></th>
           <th class="text-left">曲名</th>
-          <th class="text-right"><%= link_to 'edit Setlist', edit_setlist_path(setlist_id: @setlist.id), class: 'btn btn-primary btn-xs' %> <!-- 引数渡す必要ないかも--></th>
+          <th class="text-right"><%= link_to 'edit Setlist', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %> <!-- 引数渡す必要ないかも--></th>
           <th class="text-left">
             <% if current_user == @setlist.user %>
               <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>

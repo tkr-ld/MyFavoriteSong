@@ -26,7 +26,7 @@ class SetlistsController < ApplicationController
   end
 
   def edit
-    @setlist = Setlist.find(params[:setlist_id])
+    @setlist = Setlist.find(params[:id])
     @musician = Musician.find(@setlist.musician_id)
   end
 
@@ -58,7 +58,7 @@ class SetlistsController < ApplicationController
     
     if @song.save
       flash[:success] = '曲を追加しました。'
-      redirect_to @setlist
+      redirect_to edit_setlist_url(@setlist)
     else
       flash.now[:danger] = '曲の追加に失敗しました。'
       render :edit

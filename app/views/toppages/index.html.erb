@@ -12,25 +12,36 @@
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    .jumbotron { 
+      background:url(<%= asset_path 'main.jpg' %>) center no-repeat; 
+      background-size: cover;
+      margin-top: 0px; 
+      border: 0px;
+      padding-bottom: 180px;
+      padding-top: 100px
+    }
+    .navbar { margin-bottom: 0px };
+    </style>
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
+    <%= render 'layouts/flash_messages' %>
      <div class="center jumbotron"> 
-     <%= render 'layouts/flash_messages' %>
-     <div class="text-center">
+       <div class="text-center">
         <h1>MyfavoriteSong</h1>
         <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-      </div>
-      <div class="container">
+       </div>
+     </div>
+       <div class="container">
         <div class="text-left">
-          <h4><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
-          <h4><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録しなくても、セットリストを投稿することはできませんが、閲覧・編集することはできます</h4>
-          <h4><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
-          <h4><span class=" glyphicon glyphicon-hand-right"></span>まずは<%= link_to 'こちら', search_musicians_path %>からミュージシャンを検索してみましょう</h4>
+          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
+          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録しなくても、セットリストを投稿することはできませんが、閲覧・編集することはできます</h4>
+          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
+          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>まずは<%= link_to 'こちら', search_musicians_path %>からミュージシャンを検索してみましょう</h4>
         </div>
       </div>
-    </div>
   </body>
 </html>
 
