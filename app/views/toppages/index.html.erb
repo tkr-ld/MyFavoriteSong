@@ -41,6 +41,20 @@
           <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
           <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>まずは<%= link_to 'こちら', search_musicians_path %>からミュージシャンを検索してみましょう</h4>
         </div>
+        <div class="col-xs-12 col-lg-8">
+        <div class="text-center">
+        <% if @setlists.any? %>
+          <h3 class="text-muted"><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</h4>
+          <table class="table">
+          <% @setlists.each do |setlist| %>
+            <tr class="text-left">
+              <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+              <td><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
+            </tr>
+          <% end %>
+          </table>
+        <% end %>
+        </div>
       </div>
   </body>
 </html>
