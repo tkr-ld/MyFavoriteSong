@@ -19,24 +19,24 @@
         </table>
     </div>
     <div>
-        <table class="table">
+      <table class="table">
         <tr>
           <th class="text-right"></th>
           <th class="text-left">曲名</th>
-          <th class="text-right"><%= link_to 'edit Setlist', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %> <!-- 引数渡す必要ないかも--></th>
-          <th class="text-left">
-            <% if current_user == @setlist.user %>
-              <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
-            <% end %>
-          </th>
         </tr>
         <% @songs.each do |song| %> 
-        <tr>
-          <td class="text-right"><%= song.trackorder %></td>
-          <td class="text-left"><%= song.title %></td>
-        </tr>
-      <% end %>
+          <tr>
+            <td class="text-right"><%= song.trackorder %></td>
+            <td class="text-left"><%= song.title %></td>
+          </tr>
+        <% end %>
       </table>
+    </div>
+    <div>
+      <%= link_to 'edit Setlist', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %> 
+      <% if current_user == @setlist.user %>
+        <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+      <% end %>
     </div>
     <%= link_to musician_path(@musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @musician.name %><% end %>
   </div>
