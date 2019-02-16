@@ -4,16 +4,22 @@
         <table class="table">
         <tr>
           <th class="text-left">ライブ名</th>
-          <th class="text-left">ミュージシャン名</th>
-          <th class="text-left">日付</th>
-          <th class="text-left">場所</th>
-          <th class="text-left"></th>
+          <td><%= @setlist.title %></td>
         </tr>
         <tr>
-          <td><%= @setlist.title %></td>
+          <th class="text-left">ミュージシャン名</th>
           <td><%= @musician.name %></td>
+        </tr>
+        <tr>
+          <th class="text-left">日付</th>
           <td><%= @setlist.date %></td>
+        </tr>
+        <tr>
+          <th class="text-left">場所</th>
           <td><%= @setlist.place %></td>
+        </tr>
+        <tr>
+          <th class="text-left"></th>
           <td><%= render 'setlist_relationships/join_button', setlist: @setlist %></td>
         </tr>
         </table>
