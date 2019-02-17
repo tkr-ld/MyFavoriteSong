@@ -2,7 +2,7 @@
   <aside class="col-xs-12 col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @musician.name %></h3>
+        <h1 class="panel-title"><%= @musician.name %></h1>
       </div>
       <div class="panel-body">
         <%= image_tag(@musician.image.url, class:"img-responsive") if @musician.image.present? %>
@@ -18,7 +18,7 @@
   <div class="col-xs-12 col-lg-8">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h4><%= @musician.detail %></h4>
+          <h5><%= @musician.detail %></h5>
         </div>
       </div>
       <div class="page-header">

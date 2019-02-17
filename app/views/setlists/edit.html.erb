@@ -46,13 +46,13 @@
       <% count = @setlist.songs.count %>
       <%= f.fields_for :songs do |song| %>
         <% if count > song.index %>
-        <div class="form-inline">
-          <%= song.label :trackorder, 'Trackorder' %>
-          <%= song.number_field :trackorder, in: 0...201,  class: 'form-control' %>
-          <%= song.label :title, 'Title' %>
-          <%= song.text_field :title, class: 'form-control' %>
-          <%= link_to "Delete", del_song_setlist_path(song_id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
-        </div>
+          <div class="form-inline">
+            <%= song.label :trackorder, 'Trackorder' %>
+            <%= song.number_field :trackorder, in: 0...201,  class: 'form-control' %>
+            <%= song.label :title, 'Title' %>
+            <%= song.text_field :title, class: 'form-control' %>
+            <%= link_to "Delete", del_song_setlist_path(song_id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+          </div>
           <br>
         <% end %>
       <% end %>
