@@ -4,14 +4,14 @@ class MusicianRelationshipsController < ApplicationController
   def create
     musician = Musician.find(params[:musician_id])
     current_user.favorite(musician)
-    flash[:success] = 'Musicianをお気に入りに追加しました'
+    flash[:success] = 'ミュージシャンをお気に入りに追加しました'
     redirect_to musician
   end
 
   def destroy
     musician = Musician.find(params[:musician_id])
     current_user.unfavorite(musician)
-    flash[:success] = 'Musicianをお気に入りから解除しました'
+    flash[:success] = 'ミュージシャンをお気に入りから解除しました'
     redirect_to musician
   end
 end

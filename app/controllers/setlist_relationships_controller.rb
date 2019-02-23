@@ -4,14 +4,14 @@ class SetlistRelationshipsController < ApplicationController
   def create
     setlist = Setlist.find(params[:setlist_id])
     current_user.join(setlist)
-    flash[:success] = 'Setlistを参加したライブに追加しました'
+    flash[:success] = 'セットリストを参加したライブに追加しました'
     redirect_to setlist
   end
 
   def destroy
     setlist = Setlist.find(params[:setlist_id])
     current_user.unjoin(setlist)
-    flash[:success] = 'Setlistを参加したライブから解除しました'
+    flash[:success] = 'セットリストを参加したライブから解除しました'
     redirect_to setlist
   end
 end
