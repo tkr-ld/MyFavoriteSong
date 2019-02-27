@@ -12,7 +12,14 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'SearchMusician!', search_musicians_path %></li>
+          <li>
+            <span class="form-inline">
+              <%= search_form_for(@search, class: 'form_inline') do |f| %>
+                <%= f.search_field :name_cont, class: 'form-control',placeholder: 'ミュージシャン名を入力' %>
+                <%= f.submit 'Search',class: 'btn btn-primary'%>
+              <% end %>
+            </span>
+          </li>
           <% if logged_in? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
