@@ -1,14 +1,7 @@
 <div class="text-left page-header">
   <h2>Search Musician</h2>
 </div>
-<div class="form-inline">
-<%= form_tag(musicians_path,:method => 'get') do %>
-  <%= text_field_tag :search, '',class: 'form-control',placeholder: 'ミュージシャン名を入力' %>
-  <%= button_tag( class: "btn btn-primary") do %>
-    <%= content_tag :span, "Search", class: "glyphicon glyphicon-search" %>
-  <% end %>
-<% end %>
-  </div>
+
 <br>
 <% if @musicians.present? %>
   <table class="table">

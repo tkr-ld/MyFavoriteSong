@@ -2,10 +2,9 @@ class MusiciansController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create]
 
   def index
-    @musicians = Musician.search(params[:search])
+    @musicians = @search.result
     number = @musicians.count
     flash.now[:success] = number.to_s + '件の検索結果が見つかりました'
-    render :search
   end
   
   def show
