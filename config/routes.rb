@@ -9,13 +9,11 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :new, :create] do
         member do
           get :favorites
+          get :joinlives
         end
     end
   
     resources :musicians, only: [:index, :show, :new, :create, :edit, :update] do
-        collection do
-            get :search
-        end
     end
     
     resources :setlists do
