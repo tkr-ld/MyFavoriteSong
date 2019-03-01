@@ -14,6 +14,7 @@
     </tr>
   <% end %>
   </table>
+  <%= paginate @musicians %>
 <% else %>
   <br>
   <%= link_to new_musician_path, class: 'btn btn-default' do %> <span class=" glyphicon glyphicon-plus"></span>Add Musician<% end %>
