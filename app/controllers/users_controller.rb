@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @favorites = @user.favorites
-    @joinlives = @user.joinlives
+    @favorites = @user.favorites.last(5)
+    @joinlives = @user.joinlives.last(5)
     user_counts(@user)
   end
 
@@ -26,7 +26,14 @@ class UsersController < ApplicationController
   
   def favorites
     @user = User.find(params[:id])
-    @favorites = @user.favorites
+    @favorites = @user.favorites.page(params[:page])
+    user_counts(@user)
+  end
+
+  def joinlives
+    @user = User.find(params[:id])
+    @joinlives = @user.joinlives.page(params[:page])
+    user_counts(@user)
   end
   
   private

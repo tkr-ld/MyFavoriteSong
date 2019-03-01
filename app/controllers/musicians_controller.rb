@@ -4,6 +4,7 @@ class MusiciansController < ApplicationController
   def index
     @musicians = @search.result
     number = @musicians.count
+    @musicians = @musicians.page(params[:page])
     flash.now[:success] = number.to_s + '件の検索結果が見つかりました'
   end
   

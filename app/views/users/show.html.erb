@@ -10,11 +10,11 @@
     </div>
   </aside>
       <div class="col-xs-12 col-md-6">
-        <h3>Favorite Musician<span class="badge"><%= @count_favorites %></span></h3>
+        <h3><%= link_to 'Favorite Song', favorites_user_path(@user) %><span class="badge"><%= @count_favorites %></span></h3>
       <%= render 'musicians', musicians: @favorites %>
       </div>
       <div class="col-xs-12 col-md-6">
-        <h3>Joined Live<span class="badge"><%= @count_joined %></span></h3>
+        <h3><%= link_to 'Joined Live', joinlives_user_path(@user) %><span class="badge"><%= @count_joined %></span></h3>
       <%= render 'setlists', setlists: @joinlives %>
       </div>
 </div>
