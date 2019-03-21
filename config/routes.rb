@@ -25,5 +25,9 @@ Rails.application.routes.draw do
     
     resources :musician_relationships, only: [:create, :destroy]
     resources :setlist_relationships, only: [:create, :destroy]
+
+    if Rails.env.development?
+        mount LetterOpenerWeb::Engine, at: "/letter_opener"
+    end
     
 end

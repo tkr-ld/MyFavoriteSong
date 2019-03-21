@@ -16,7 +16,7 @@ class Musician < ApplicationRecord
   end
   
   has_many :setlists
-  has_many :favorite_relationships
-  has_many :favorited, through: :favorite_relationships, source: :user
+  has_many :musician_relationships
+  has_many :favoriting_users, through: :musician_relationships, source: :user
   
 end
