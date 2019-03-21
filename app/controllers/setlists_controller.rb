@@ -19,7 +19,7 @@ class SetlistsController < ApplicationController
     if @setlist.save
       SetlistMailer.add_setlist_email(@setlist).deliver_now
       flash[:success] = 'セットリストを登録しました。'
-      redirect_to @setlist
+      redirect_to edit_setlist_path(@setlist)
     else
       flash.now[:danger] = 'セットリストの登録に失敗しました。'
       render :new
@@ -71,7 +71,7 @@ class SetlistsController < ApplicationController
     @setlist = @song.setlist
     @song.destroy
     flash[:success] = '曲を削除しました。'
-    redirect_to @setlist
+    redirect_to edit_setlist_url(@setlist)
   end
   
   private

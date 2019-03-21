@@ -1,7 +1,7 @@
 class Setlist < ApplicationRecord
   belongs_to :user
   belongs_to :musician
-  has_many :songs
+  has_many :songs, dependent: :destroy
   has_many :musician_relationships
   has_many :joinusers, through: :setlist_relationships, source: :user
   

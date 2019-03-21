@@ -15,7 +15,7 @@ class Musician < ApplicationRecord
     self.setlists.count
   end
   
-  has_many :setlists
+  has_many :setlists, dependent: :destroy
   has_many :musician_relationships
   has_many :favoriting_users, through: :musician_relationships, source: :user
   

@@ -1,29 +1,31 @@
 <div class="row">
   <div class="col-xs-12">
+
     <div>
-        <table class="table">
-        <tr>
-          <th class="text-left">ライブ名</th>
-          <td><%= @setlist.title %></td>
-        </tr>
-        <tr>
-          <th class="text-left">ミュージシャン名</th>
-          <td><%= @musician.name %></td>
-        </tr>
-        <tr>
-          <th class="text-left">日付</th>
-          <td><%= @setlist.date %></td>
-        </tr>
-        <tr>
-          <th class="text-left">場所</th>
-          <td><%= @setlist.place %></td>
-        </tr>
-        <tr>
-          <th class="text-left"></th>
-          <td><%= render 'setlist_relationships/join_button', setlist: @setlist %></td>
-        </tr>
-        </table>
+      <table class="table">
+      <tr>
+        <th class="text-left">ライブ名</th>
+        <td><%= @setlist.title %></td>
+      </tr>
+      <tr>
+        <th class="text-left">ミュージシャン名</th>
+        <td><%= @musician.name %></td>
+      </tr>
+      <tr>
+        <th class="text-left">日付</th>
+        <td><%= @setlist.date %></td>
+      </tr>
+      <tr>
+        <th class="text-left">場所</th>
+        <td><%= @setlist.place %></td>
+      </tr>
+      <tr>
+        <th class="text-left"></th>
+        <td><%= render 'setlist_relationships/join_button', setlist: @setlist %></td>
+      </tr>
+      </table>
     </div>
+
     <div>
       <table class="table">
         <tr>
@@ -38,6 +40,7 @@
         <% end %>
       </table>
     </div>
+
     <div>
       <%= link_to 'edit Setlist', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %> 
       <% if current_user == @setlist.user %>
