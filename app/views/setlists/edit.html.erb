@@ -1,22 +1,29 @@
 <div class="row">
   <div class="col-xs-12">
+
     <div>
-        <table class="table" align="left">
-        <tr>
-          <th class="text-left">ライブ名</th>
-          <th class="text-left">ミュージシャン名</th>
-          <th class="text-left">場所</th>
-          <th class="text-left">日付</th>
-        </tr>
-        <tr>
-          <td><%= @setlist.title %></td>
-          <td><%= @musician.name %></td>
-          <td><%= @setlist.date %></td>
-          <td><%= @setlist.place %></td>
-        </tr>
-        </table>
+      <table class="table">
+      <tr>
+        <th class="text-left">ライブ名</th>
+        <td><%= @setlist.title %></td>
+      </tr>
+      <tr>
+        <th class="text-left">ミュージシャン名</th>
+        <td><%= @musician.name %></td>
+      </tr>
+      <tr>
+        <th class="text-left">日付</th>
+        <td><%= @setlist.date %></td>
+      </tr>
+      <tr>
+        <th class="text-left">場所</th>
+        <td><%= @setlist.place %></td>
+      </tr>
+      </table>
     </div>
-  
+
+    <br>
+
     <div class="form-group">
       <div class="form-inline">
         <%= form_tag(add_song_setlist_path(@setlist), method: :patch, class: 'form_inline') do %>
@@ -48,9 +55,8 @@
           <br>
         <% end %>
       <% end %>
-      
-      <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
-      <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
+    <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
+    <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
     
     <% end %>
     </div>
