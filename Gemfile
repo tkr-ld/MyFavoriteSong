@@ -66,3 +66,11 @@ group :production do
 end
 
 gem 'ransack'
+
+gem 'dotenv-rails'
+
+group :development do
+  gem 'letter_opener'
+end
+
+gem 'letter_opener_web', group:  :development

@@ -17,6 +17,7 @@ class SetlistsController < ApplicationController
     @setlist = current_user.setlists.build(setlist_params)
 
     if @setlist.save
+      SetlistMailer.add_setlist_email(@setlist).deliver_now
       flash[:success] = 'セットリストを登録しました。'
       redirect_to @setlist
     else
@@ -78,10 +79,6 @@ class SetlistsController < ApplicationController
   def setlist_params
     params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :trackorder])
   end
-  
-  # def song_params
-  #   params.require(:song).permit(:title, :trackorder)
-  # end
   
   def song_params
     params.permit(:title, :trackorder)
