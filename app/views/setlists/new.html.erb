@@ -8,17 +8,17 @@
     <%= form_for(@setlist, html: { method: :post }) do |f| %>
 
       <div class="form-group">
-        <%= f.label :title, 'Title' %>
+        <%= f.label :title, 'ライブ名' %>
         <%= f.text_field :title, class: 'form-control' %>
       </div>
       
       <div class="form-group">
-        <%= f.label :date, 'Date' %>
+        <%= f.label :date, '日付' %>
         <%= f.date_field :date, class: 'form-control' %>
       </div>
       
       <div class="form-group">
-        <%= f.label :place, 'Place' %>
+        <%= f.label :place, '場所' %>
         <%= f.text_field :place, class: 'form-control' %>
       </div>
       

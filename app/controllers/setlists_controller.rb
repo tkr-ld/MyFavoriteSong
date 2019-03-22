@@ -22,7 +22,7 @@ class SetlistsController < ApplicationController
       redirect_to edit_setlist_path(@setlist)
     else
       flash.now[:danger] = 'セットリストの登録に失敗しました。'
-      render :new
+      redirect_to edit_setlist_path(@setlist)
     end
   end
 
@@ -39,7 +39,9 @@ class SetlistsController < ApplicationController
       flash[:success] = 'セットリストを登録しました。'
       redirect_to @setlist
     else
-      flash.now[:danger] = 'セットリストの登録に失敗しました。'
+      @setlist.errors.full_messages.each do |message|
+        flash.now[:danger] = message
+      end
       render :edit
     end
     
@@ -61,8 +63,15 @@ class SetlistsController < ApplicationController
       flash[:success] = '曲を追加しました。'
       redirect_to edit_setlist_url(@setlist)
     else
-      flash.now[:danger] = '曲の追加に失敗しました。'
-      render :edit
+      #エラーメッセージをフラッシュとして表示する
+      if @song.errors.any?
+        @song.errors.full_messages.each do |message|
+          flash[:success] = message
+        end
+      else
+        flash[:success] = '曲を追加に失敗しました。'
+      end
+      redirect_to edit_setlist_url(@setlist)
     end
   end
   
