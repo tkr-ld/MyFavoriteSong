@@ -61,6 +61,7 @@ class SetlistsController < ApplicationController
       flash[:success] = '曲を追加しました。'
       redirect_to edit_setlist_url(@setlist)
     else
+      #エラーメッセージをフラッシュとして表示する
       if @song.errors.any?
         @song.errors.full_messages.each do |message|
           flash[:success] = message

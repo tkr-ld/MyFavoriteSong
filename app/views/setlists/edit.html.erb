@@ -26,9 +26,9 @@
     <div class="form-group">
       <div class="form-inline">
         <%= form_tag(add_song_setlist_path(@setlist), method: :patch, class: 'form_inline') do %>
-            <%= label :trackorder, 'trackorder' %>
+            <%= label :trackorder, '曲順' %>
             <%= number_field_tag :trackorder, '', in: 0...201, class: 'form-control' %>
-            <%= label :title, 'title' %>
+            <%= label :title, '曲名' %>
             <%= text_field_tag :title, '', class: 'form-control' %>
 
             <%= button_tag( class: "btn btn-primary btn-xs") do %>
@@ -55,7 +55,7 @@
         <% end %>
       <% end %>
     <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
-    <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
+    <%= f.submit '登録', class: 'btn btn-primary btn-lg' %>
     
     <% end %>
     </div>
