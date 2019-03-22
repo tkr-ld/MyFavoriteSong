@@ -39,7 +39,9 @@ class SetlistsController < ApplicationController
       flash[:success] = 'セットリストを登録しました。'
       redirect_to @setlist
     else
-      flash.now[:danger] = 'セットリストの登録に失敗しました。'
+      @setlist.errors.full_messages.each do |message|
+        flash.now[:danger] = message
+      end
       render :edit
     end
     
