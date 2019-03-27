@@ -1,30 +1,5 @@
 <div class="text-center page-header">
-  <h1>Setlist Registration</h1>
+  <h1>セットリストの登録</h1>
 </div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-
-    <%= form_for(@setlist, html: { method: :post }) do |f| %>
-
-      <div class="form-group">
-        <%= f.label :title, 'ライブ名' %>
-        <%= f.text_field :title, class: 'form-control' %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :date, '日付' %>
-        <%= f.date_field :date, class: 'form-control' %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :place, '場所' %>
-        <%= f.text_field :place, class: 'form-control' %>
-      </div>
-      
-      <%=f.hidden_field :musician_id, :value => @setlist.musician_id %>
-      
-      <%= f.submit 'Registration', class: 'btn btn-primary btn-block' %>
-    <% end %>
-  </div>
-</div>
+<%= render 'form', setlist: @setlist %>
