@@ -20,7 +20,7 @@
         <td><%= @setlist.place %></td>
       </tr>
       <tr>
-        <th class="text-left"></th>
+        <th class="text-left"><%= link_to 'edit detail', setlist_detail_edit_path(@setlist), class: 'btn btn-primary btn-xs' %></th>
         <td><%= render 'setlist_relationships/join_button', setlist: @setlist %></td>
       </tr>
       </table>

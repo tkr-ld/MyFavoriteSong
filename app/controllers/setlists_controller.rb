@@ -31,6 +31,10 @@ class SetlistsController < ApplicationController
     @musician = Musician.find(@setlist.musician_id)
   end
 
+  def detail_edit
+    @setlist = Setlist.find(params[:setlist_id])
+  end
+
   def update
     @setlist = Setlist.find(params[:id])
     @musician = Musician.find(@setlist.musician_id)
@@ -44,7 +48,6 @@ class SetlistsController < ApplicationController
       end
       render :edit
     end
-    
   end
 
   def destroy
