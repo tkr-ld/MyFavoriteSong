@@ -78,7 +78,7 @@ class SetlistsController < ApplicationController
     end
   end
   
-  def del_song
+  def delete_song
     @song = Song.find(params[:song_id])
     @setlist = @song.setlist
     @song.destroy
