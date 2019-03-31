@@ -17,12 +17,16 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
+    <div id="wrapper">
+      <%= render 'layouts/navbar' %>
 
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
+      <div class="container">
+        <%= render 'layouts/flash_messages' %>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
+      
+      <%= render 'layouts/copyright' %>
     </div>
   </body>
 </html>

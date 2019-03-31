@@ -25,17 +25,18 @@
       <h3>セットリスト一覧<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></h3>
       </div>
         <table class="table">
-        <tr>
-          <th class="text-left">ライブ名</th>
-          <th class="text-left">場所</th>
-          <th class="text-left">日付</th>
-        </tr>
-        <% @setlists.each do |setlist|  %>
           <tr>
-            <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
-            <td><span class="text-muted"><%= setlist.place %></span></td>
-            <td><span class="text-muted"><%= setlist.date %></span></td>
+            <th class="text-left">ライブ名</th>
+            <th class="text-left">場所</th>
+            <th class="text-left">日付</th>
           </tr>
-        <% end %>
+          <% @setlists.each do |setlist|  %>
+            <tr>
+              <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
+              <td><span class="text-muted"><%= setlist.place %></span></td>
+              <td><span class="text-muted"><%= setlist.date %></span></td>
+            </tr>
+          <% end %>
+        </table>
   </div>
 </div>
