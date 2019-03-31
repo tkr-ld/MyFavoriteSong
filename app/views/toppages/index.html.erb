@@ -26,37 +26,40 @@
   </head>
 
   <body>
-    <%= render 'layouts/navbar' %>
-    <%= render 'layouts/flash_messages' %>
-     <div class="center jumbotron"> 
-       <div class="text-center">
-        <h1>MyfavoriteSong</h1>
-        <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
-       </div>
-     </div>
-       <div class="container">
-        <div class="text-left">
-          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
-          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録しなくても、セットリストを投稿することはできませんが、閲覧・編集することはできます</h4>
-          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
-          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>まずは右上の検索バーからミュージシャンを検索してみましょう</h4>
+    <div id="wrapper">
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/flash_messages' %>
+        <div class="center jumbotron"> 
+          <div class="text-center">
+            <h1>MyfavoriteSong</h1>
+            <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+          </div>
         </div>
-        <div class="col-xs-12 col-lg-8">
-        <div class="text-center">
-        <% if @setlists.any? %>
-          <h3 class="text-muted"><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</h4>
-          <table class="table">
-          <% @setlists.each do |setlist| %>
-            <tr class="text-left">
-              <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
-              <td><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
-            </tr>
-          <% end %>
-          </table>
-        <% end %>
+        <div class="container">
+          <div class="text-left">
+            <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
+            <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録しなくても、セットリストを投稿することはできませんが、閲覧・編集することはできます</h4>
+            <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
+            <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>まずは右上の検索バーからミュージシャンを検索してみましょう</h4>
+          </div>
+          <div class="col-xs-12 col-lg-8">
+            <div class="text-center">
+              <% if @setlists.any? %>
+                <h3 class="text-muted"><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</h3>
+                <table class="table">
+                  <% @setlists.each do |setlist| %>
+                    <tr class="text-left">
+                      <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+                      <td><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
-    <%= render 'layouts/copyright' %>
+      <%= render 'layouts/copyright' %>
+    </div>
   </body>
 </html>
 
