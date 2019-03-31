@@ -25,3 +25,12 @@
     color: #696969;
     background-color: black;
   }
+
+.inline-right {
+  float: right;
+}
+
+.inline-left {
+  float: left;
+}
+
