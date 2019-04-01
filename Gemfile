@@ -74,3 +74,5 @@ group :development do
 end
 
 gem 'letter_opener_web', group:  :development
+
+gem 'twitter'
