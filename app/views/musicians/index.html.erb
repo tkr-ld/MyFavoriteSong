@@ -1,21 +1,24 @@
 <div class="text-left page-header">
   <h2>Search Musician</h2>
 </div>
-
 <br>
-<% if @musicians.present? %>
-  <table class="table">
-  <tr>
-    <th class="text-left">ミュージシャン名</th>
-  </tr>
-  <% @musicians.each do |musician| %>
-    <tr class="text-left">
-      <td><%= link_to musician_path(musician) do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
-    </tr>
+<div class="col-xs-7">
+  <% if @musicians.present? %>
+    <table class="table">
+      <tr>
+        <th class="text-left">ミュージシャン名</th>
+        <th></th>
+      </tr>
+      <% @musicians.each do |musician| %>
+        <tr class="text-left">
+          <td><%= link_to musician_path(musician) do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
+          <td><%= render 'musician_relationships/favorite_button', musician: musician %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @musicians %>
+  <% else %>
+    <br>
+    <%= link_to new_musician_path, class: 'btn btn-default' do %> <span class=" glyphicon glyphicon-plus"></span>Add Musician<% end %>
   <% end %>
-  </table>
-  <%= paginate @musicians %>
-<% else %>
-  <br>
-  <%= link_to new_musician_path, class: 'btn btn-default' do %> <span class=" glyphicon glyphicon-plus"></span>Add Musician<% end %>
-<% end %>
+</div>
