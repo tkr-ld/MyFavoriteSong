@@ -46,6 +46,24 @@
         <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
       <% end %>
     </div>
-    <%= link_to musician_path(@musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @musician.name %><% end %>
+
+    <% if @tweets.present? %>
+      <div class="col-xs-12">
+        <table class="table">
+          <tr>
+            <th class="text-left">このライブに関するツイート</th>
+          </tr>
+          <% @tweets.each do |tweet| %> 
+            <tr>
+              <td><%= tweet.contents %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+
+    <div class="inline-left">
+      <%= link_to musician_path(@musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @musician.name %><% end %>
+    </div>
   </div>
 </div>

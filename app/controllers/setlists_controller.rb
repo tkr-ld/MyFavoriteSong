@@ -6,8 +6,21 @@ class SetlistsController < ApplicationController
 
   def show
     @setlist = Setlist.find(params[:id])
-    @musician = Musician.find(@setlist.musician_id)
+    @musician = @setlist.musician
     @songs = @setlist.songs.order('trackorder ASC')
+
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+    end
+
+    @tweets = []
+    since_id = nil
+
+    tweets = client.search("#{@musician.name} #{@setlist.place}", count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets)
+    tweets = client.search(@setlist.title, count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets)
   end
 
   def new
@@ -30,7 +43,7 @@ class SetlistsController < ApplicationController
 
   def edit
     @setlist = Setlist.find(params[:id])
-    @musician = Musician.find(@setlist.musician_id)
+    @musician = @setlist.musician
   end
 
   def detail_edit
@@ -39,7 +52,7 @@ class SetlistsController < ApplicationController
 
   def update
     @setlist = Setlist.find(params[:id])
-    @musician = Musician.find(@setlist.musician_id)
+    @musician = @setlist.musician
 
     if @setlist.update(setlist_params)
       flash[:success] = 'セットリストを登録しました。'
@@ -53,39 +66,38 @@ class SetlistsController < ApplicationController
   end
 
   def destroy
-    @musician = @setlist.musician
+    musician = @setlist.musician
     @setlist.destroy
     flash[:success] = 'セットリストを削除しました。'
-    redirect_to @musician
+    redirect_to musician
   end
   
   def add_song
-    @setlist = Setlist.find(params[:id])
-    @song = @setlist.songs.build(song_params)
-    @musician = @setlist.musician
+    setlist = Setlist.find(params[:id])
+    song = setlist.songs.build(song_params)
     
-    if @song.save
+    if song.save
       flash[:success] = '曲を追加しました。'
-      redirect_to edit_setlist_url(@setlist)
+      redirect_to edit_setlist_url(setlist)
     else
       #エラーメッセージをフラッシュとして表示する
-      if @song.errors.any?
-        @song.errors.full_messages.each do |message|
+      if song.errors.any?
+        song.errors.full_messages.each do |message|
           flash[:success] = message
         end
       else
         flash[:success] = '曲を追加に失敗しました。'
       end
-      redirect_to edit_setlist_url(@setlist)
+      redirect_to edit_setlist_url(setlist)
     end
   end
   
   def delete_song
-    @song = Song.find(params[:song_id])
-    @setlist = @song.setlist
-    @song.destroy
+    song = Song.find(params[:song_id])
+    setlist = song.setlist
+    song.destroy
     flash[:success] = '曲を削除しました。'
-    redirect_to edit_setlist_url(@setlist)
+    redirect_to edit_setlist_url(setlist)
   end
   
   private
@@ -102,6 +114,13 @@ class SetlistsController < ApplicationController
     @setlist = current_user.setlists.find_by(id: params[:id])
     unless @setlist
       redirect_to root_url
+    end
+  end
+
+  def add_tweets(tweets)
+    tweets.take(10).each do |tw|
+      tweet = Tweet.new(tw.full_text)
+      @tweets << tweet
     end
   end
   
