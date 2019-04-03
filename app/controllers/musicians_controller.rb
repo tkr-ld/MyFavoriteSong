@@ -1,15 +1,15 @@
 class MusiciansController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create]
+  before_action :find_musician, only: [:show, :edit, :update]
 
   def index
     @musicians = @search.result
-    number = @musicians.count
+    musicians_count = @musicians.count
     @musicians = @musicians.page(params[:page])
-    flash.now[:success] = number.to_s + '件の検索結果が見つかりました'
+    flash.now[:success] = musicians_count.to_s + '件の検索結果が見つかりました'
   end
   
   def show
-    @musician = Musician.find(params[:id])
     @setlists = Setlist.where(musician_id: @musician.id).order(:date)
   end
 
@@ -30,12 +30,9 @@ class MusiciansController < ApplicationController
   end
   
   def edit
-    @musician = Musician.find(params[:id])
   end
   
   def update
-    @musician = Musician.find(params[:id])
-    
     if @musician.update(musician_params)
       flash[:success] = 'ミュージシャンは正常に更新されました'
       redirect_to @musician
@@ -46,6 +43,10 @@ class MusiciansController < ApplicationController
   end
 
   private
+
+  def find_musician
+    @musician = Musician.find(params[:id])
+  end
 
   def musician_params
     params.require(:musician).permit(:name, :detail, :image)

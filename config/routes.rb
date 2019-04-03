@@ -15,13 +15,10 @@ Rails.application.routes.draw do
   
     resources :musicians, only: [:index, :show, :new, :create, :edit, :update] do
     end
-    
+
     resources :setlists,except: [:index] do
-      get :detail_edit, action: :detail_edit
-      member do
-        patch :add_song
-        delete :delete_song
-      end
+      get 'edit/track', action: :edit_track
+      resources :songs, only: [:create, :destroy]
     end
     
     resources :musician_relationships, only: [:create, :destroy]

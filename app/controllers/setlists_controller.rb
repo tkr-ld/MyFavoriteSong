@@ -3,10 +3,9 @@ class SetlistsController < ApplicationController
 
   before_action :require_user_logged_in, only: [:new, :create, :destroy]
   before_action :correct_user, only: [:destroy]
+  before_action :find_setlist, only: [:show, :edit, :update]
 
   def show
-    @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
     @songs = @setlist.songs.order('trackorder ASC')
 
     client = Twitter::REST::Client.new do |config|
@@ -17,15 +16,15 @@ class SetlistsController < ApplicationController
     @tweets = []
     since_id = nil
 
-    tweets = client.search("#{@musician.name} #{@setlist.place}", count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
-    add_tweets(tweets)
-    tweets = client.search(@setlist.title, count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
-    add_tweets(tweets)
+    tweets = client.search("#{@setlist.musician.name} #{@setlist.place}", count: 7, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets, 7)
+    tweets = client.search(@setlist.title, count: 3, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets,3)
   end
 
   def new
-    @musician = Musician.find(params[:musician_id])
-    @setlist = @musician.setlists.build
+    musician = Musician.find(params[:musician_id])
+    @setlist = musician.setlists.build
   end
 
   def create
@@ -34,26 +33,22 @@ class SetlistsController < ApplicationController
     if @setlist.save
       SetlistMailer.add_setlist_email(@setlist).deliver_now
       flash[:success] = 'セットリストを登録しました。'
-      redirect_to edit_setlist_path(@setlist)
+      redirect_to setlist_edit_track_path(@setlist)
     else
       flash.now[:danger] = 'セットリストの登録に失敗しました。'
-      redirect_to edit_setlist_path(@setlist)
+      redirect_to setlist_edit_track_path(@setlist)
     end
   end
 
   def edit
-    @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
   end
 
-  def detail_edit
+  def edit_track
     @setlist = Setlist.find(params[:setlist_id])
+    @song = Song.new
   end
 
   def update
-    @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
-
     if @setlist.update(setlist_params)
       flash[:success] = 'セットリストを登録しました。'
       redirect_to @setlist
@@ -72,42 +67,14 @@ class SetlistsController < ApplicationController
     redirect_to musician
   end
   
-  def add_song
-    setlist = Setlist.find(params[:id])
-    song = setlist.songs.build(song_params)
-    
-    if song.save
-      flash[:success] = '曲を追加しました。'
-      redirect_to edit_setlist_url(setlist)
-    else
-      #エラーメッセージをフラッシュとして表示する
-      if song.errors.any?
-        song.errors.full_messages.each do |message|
-          flash[:success] = message
-        end
-      else
-        flash[:success] = '曲を追加に失敗しました。'
-      end
-      redirect_to edit_setlist_url(setlist)
-    end
-  end
-  
-  def delete_song
-    song = Song.find(params[:song_id])
-    setlist = song.setlist
-    song.destroy
-    flash[:success] = '曲を削除しました。'
-    redirect_to edit_setlist_url(setlist)
-  end
-  
   private
+
+  def find_setlist
+    @setlist = Setlist.find(params[:id])
+  end
 
   def setlist_params
     params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :trackorder])
-  end
-  
-  def song_params
-    params.permit(:title, :trackorder)
   end
   
   def correct_user
@@ -117,11 +84,10 @@ class SetlistsController < ApplicationController
     end
   end
 
-  def add_tweets(tweets)
-    tweets.take(10).each do |tw|
+  def add_tweets(tweets, n)
+    tweets.take(n).each do |tw|
       tweet = Tweet.new(tw.full_text)
       @tweets << tweet
     end
   end
-  
 end
