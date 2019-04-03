@@ -23,7 +23,7 @@
     </div>
 
     <div class="inline-left"><%= render 'setlist_relationships/join_button', setlist: @setlist %></div>
-    <div class="inline-right"><%= link_to 'edit detail', setlist_detail_edit_path(@setlist), class: 'btn btn-primary btn-xs' %></div>
+    <div class="inline-right"><%= link_to 'edit', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %></div>
 
     <div>
       <table class="table">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="inline-right">
-      <%= link_to 'edit Setlist', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %> 
+      <%= link_to 'edit Setlist', setlist_edit_song_path(@setlist), class: 'btn btn-primary btn-xs' %> 
       <% if current_user == @setlist.user %>
         <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
       <% end %>

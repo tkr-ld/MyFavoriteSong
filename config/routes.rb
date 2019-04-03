@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
     
     resources :setlists,except: [:index] do
-      get :detail_edit, action: :detail_edit
+      get 'edit/song', action: :edit_song
       member do
         patch :add_song
         delete :delete_song

@@ -43,10 +43,9 @@ class SetlistsController < ApplicationController
 
   def edit
     @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
   end
 
-  def detail_edit
+  def edit_song
     @setlist = Setlist.find(params[:setlist_id])
   end
 
@@ -78,7 +77,7 @@ class SetlistsController < ApplicationController
     
     if song.save
       flash[:success] = '曲を追加しました。'
-      redirect_to edit_setlist_url(setlist)
+      redirect_to setlist_edit_song_url(setlist)
     else
       #エラーメッセージをフラッシュとして表示する
       if song.errors.any?
@@ -88,7 +87,7 @@ class SetlistsController < ApplicationController
       else
         flash[:success] = '曲を追加に失敗しました。'
       end
-      redirect_to edit_setlist_url(setlist)
+      redirect_to setlist_edit_song_url(setlist)
     end
   end
   
@@ -97,7 +96,7 @@ class SetlistsController < ApplicationController
     setlist = song.setlist
     song.destroy
     flash[:success] = '曲を削除しました。'
-    redirect_to edit_setlist_url(setlist)
+    redirect_to setlist_edit_song_url(setlist)
   end
   
   private
