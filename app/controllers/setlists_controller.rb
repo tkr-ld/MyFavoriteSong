@@ -3,10 +3,9 @@ class SetlistsController < ApplicationController
 
   before_action :require_user_logged_in, only: [:new, :create, :destroy]
   before_action :correct_user, only: [:destroy]
+  before_action :find_setlist, only: [:show, :edit, :update]
 
   def show
-    @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
     @songs = @setlist.songs.order('trackorder ASC')
 
     client = Twitter::REST::Client.new do |config|
@@ -17,15 +16,15 @@ class SetlistsController < ApplicationController
     @tweets = []
     since_id = nil
 
-    tweets = client.search("#{@musician.name} #{@setlist.place}", count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
-    add_tweets(tweets)
-    tweets = client.search(@setlist.title, count: 10, result_type: "mixed", exclude: "retweets", since_id: since_id)
-    add_tweets(tweets)
+    tweets = client.search("#{@setlist.musician.name} #{@setlist.place}", count: 7, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets, 7)
+    tweets = client.search(@setlist.title, count: 3, result_type: "mixed", exclude: "retweets", since_id: since_id)
+    add_tweets(tweets,3)
   end
 
   def new
-    @musician = Musician.find(params[:musician_id])
-    @setlist = @musician.setlists.build
+    musician = Musician.find(params[:musician_id])
+    @setlist = musician.setlists.build
   end
 
   def create
@@ -42,7 +41,6 @@ class SetlistsController < ApplicationController
   end
 
   def edit
-    @setlist = Setlist.find(params[:id])
   end
 
   def edit_track
@@ -51,9 +49,6 @@ class SetlistsController < ApplicationController
   end
 
   def update
-    @setlist = Setlist.find(params[:id])
-    @musician = @setlist.musician
-
     if @setlist.update(setlist_params)
       flash[:success] = 'セットリストを登録しました。'
       redirect_to @setlist
@@ -74,6 +69,10 @@ class SetlistsController < ApplicationController
   
   private
 
+  def find_setlist
+    @setlist = Setlist.find(params[:id])
+  end
+
   def setlist_params
     params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :trackorder])
   end
@@ -85,8 +84,8 @@ class SetlistsController < ApplicationController
     end
   end
 
-  def add_tweets(tweets)
-    tweets.take(10).each do |tw|
+  def add_tweets(tweets, n)
+    tweets.take(n).each do |tw|
       tweet = Tweet.new(tw.full_text)
       @tweets << tweet
     end

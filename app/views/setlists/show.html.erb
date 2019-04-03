@@ -9,7 +9,7 @@
         </tr>
         <tr>
           <th class="text-left">ミュージシャン名</th>
-          <td><%= @musician.name %></td>
+          <td><%= @setlist.musician.name %></td>
         </tr>
         <tr>
           <th class="text-left">日付</th>
@@ -63,7 +63,7 @@
     <% end %>
 
     <div class="inline-left">
-      <%= link_to musician_path(@musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @musician.name %><% end %>
+      <%= link_to musician_path(@setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @setlist.musician.name %><% end %>
     </div>
   </div>
 </div>
