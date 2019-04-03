@@ -34,10 +34,10 @@ class SetlistsController < ApplicationController
     if @setlist.save
       SetlistMailer.add_setlist_email(@setlist).deliver_now
       flash[:success] = 'セットリストを登録しました。'
-      redirect_to edit_setlist_path(@setlist)
+      redirect_to setlist_edit_track_path(@setlist)
     else
       flash.now[:danger] = 'セットリストの登録に失敗しました。'
-      redirect_to edit_setlist_path(@setlist)
+      redirect_to setlist_edit_track_path(@setlist)
     end
   end
 
@@ -45,7 +45,7 @@ class SetlistsController < ApplicationController
     @setlist = Setlist.find(params[:id])
   end
 
-  def edit_detail
+  def edit_track
     @setlist = Setlist.find(params[:setlist_id])
     @song = Song.new
   end

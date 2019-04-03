@@ -41,7 +41,7 @@
     </div>
 
     <div class="inline-right">
-      <%= link_to 'edit Setlist', setlist_edit_detail_path(@setlist), class: 'btn btn-primary btn-xs' %> 
+      <%= link_to 'edit Setlist', setlist_edit_track_path(@setlist), class: 'btn btn-primary btn-xs' %> 
       <% if current_user == @setlist.user %>
         <%= link_to "Delete", @setlist, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
       <% end %>

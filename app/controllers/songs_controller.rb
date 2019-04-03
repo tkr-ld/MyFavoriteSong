@@ -5,7 +5,7 @@ class SongsController < ApplicationController
 
     if song.save
       flash[:success] = '曲を追加しました。'
-      redirect_to setlist_edit_detail_url(setlist)
+      redirect_to setlist_edit_track_url(setlist)
     else
       #エラーメッセージがあればフラッシュとして表示する
       if song.errors.any?
@@ -15,7 +15,7 @@ class SongsController < ApplicationController
       else
         flash[:success] = '曲を追加に失敗しました。'
       end
-      redirect_to setlist_edit_detail_url(setlist)
+      redirect_to setlist_edit_track_url(setlist)
     end
   end
 
@@ -24,7 +24,7 @@ class SongsController < ApplicationController
     setlist = song.setlist
     song.destroy
     flash[:success] = '曲を削除しました。'
-    redirect_to setlist_edit_detail_url(setlist)
+    redirect_to setlist_edit_track_url(setlist)
   end
 
   private
