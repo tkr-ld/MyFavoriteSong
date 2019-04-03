@@ -25,33 +25,17 @@
 
     <div class="form-group">
       <div class="form-inline">
-        <%= form_for(@song) do |f| %>
+        <%= form_for [@setlist, @song] do |f| %>
             <%= f.label :trackorder, '曲順' %>
             <%= f.number_field :trackorder, value: @setlist.songs.count + 1, in: 0...201, class: 'form-control' %>
             <%= f.label :title, '曲名' %>
             <%= f.text_field :title, class: 'form-control' %>
-            <%= f.hidden_field :setlist_id, value: @setlist.id %>
 
             <%= f.submit 'AddSong', class: 'btn btn-primary btn-xs' %>
         <% end %>
       </div>
     </div>
-    <br>
 
-    <div class="form-group">
-      <div class="form-inline">
-        <%= form_tag(add_song_setlist_path(@setlist), method: :post, class: 'form_inline') do %>
-            <%= label :trackorder, '曲順' %>
-            <%= number_field_tag :trackorder, @setlist.songs.count + 1, in: 0...201, class: 'form-control' %>
-            <%= label :title, '曲名' %>
-            <%= text_field_tag :title, '', class: 'form-control' %>
-
-            <%= button_tag( class: "btn btn-primary btn-xs") do %>
-              <%= content_tag :span, "AddSong", class: "glyphicon glyphicon-plus" %>
-            <% end %>
-        <% end %>
-      </div>
-    </div>
     <br>
     
     <div class="form-group">
@@ -62,7 +46,7 @@
             <%= song.number_field :trackorder, in: 0...201,  class: 'form-control' %>
             <%= song.label :title, '曲名' %>
             <%= song.text_field :title, class: 'form-control' %>
-            <%= link_to "Delete", song_path(id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
+            <%= link_to "Delete", setlist_song_path(id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
           </div>
           <br>
       <% end %>

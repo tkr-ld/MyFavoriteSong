@@ -45,7 +45,7 @@ class SetlistsController < ApplicationController
     @setlist = Setlist.find(params[:id])
   end
 
-  def edit_song
+  def edit_detail
     @setlist = Setlist.find(params[:setlist_id])
     @song = Song.new
   end
@@ -72,35 +72,10 @@ class SetlistsController < ApplicationController
     redirect_to musician
   end
   
-  def add_song
-    binding.pry
-    setlist = Setlist.find(params[:id])
-    song = setlist.songs.build(song_params)
-    
-    if song.save
-      flash[:success] = '曲を追加しました。'
-      redirect_to setlist_edit_song_url(setlist)
-    else
-      #エラーメッセージをフラッシュとして表示する
-      if song.errors.any?
-        song.errors.full_messages.each do |message|
-          flash[:success] = message
-        end
-      else
-        flash[:success] = '曲を追加に失敗しました。'
-      end
-      redirect_to setlist_edit_song_url(setlist)
-    end
-  end
-  
   private
 
   def setlist_params
     params.require(:setlist).permit(:title, :date, :place, :musician_id, songs_attributes: [:id, :title, :trackorder])
-  end
-  
-  def song_params
-    params.permit(:title, :trackorder)
   end
   
   def correct_user
@@ -116,5 +91,4 @@ class SetlistsController < ApplicationController
       @tweets << tweet
     end
   end
-  
 end
