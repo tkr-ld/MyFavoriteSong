@@ -47,6 +47,7 @@ class SetlistsController < ApplicationController
 
   def edit_song
     @setlist = Setlist.find(params[:setlist_id])
+    @song = Song.new
   end
 
   def update
@@ -90,14 +91,6 @@ class SetlistsController < ApplicationController
       end
       redirect_to setlist_edit_song_url(setlist)
     end
-  end
-  
-  def delete_song
-    song = Song.find(params[:song_id])
-    setlist = song.setlist
-    song.destroy
-    flash[:success] = '曲を削除しました。'
-    redirect_to setlist_edit_song_url(setlist)
   end
   
   private
