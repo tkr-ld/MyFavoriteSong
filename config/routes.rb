@@ -23,6 +23,8 @@ Rails.application.routes.draw do
         delete :delete_song
       end
     end
+
+    resources :songs, only: [:create, :destroy]
     
     resources :musician_relationships, only: [:create, :destroy]
     resources :setlist_relationships, only: [:create, :destroy]

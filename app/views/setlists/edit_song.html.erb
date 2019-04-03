@@ -47,6 +47,7 @@
             <%= song.number_field :trackorder, in: 0...201,  class: 'form-control' %>
             <%= song.label :title, '曲名' %>
             <%= song.text_field :title, class: 'form-control' %>
+            <%= link_to "Delete", song_path(id: song.object.id), method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: 'btn btn-danger btn-xs' %>
           </div>
           <br>
       <% end %>

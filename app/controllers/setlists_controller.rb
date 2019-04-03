@@ -72,6 +72,7 @@ class SetlistsController < ApplicationController
   end
   
   def add_song
+    binding.pry
     setlist = Setlist.find(params[:id])
     song = setlist.songs.build(song_params)
     
