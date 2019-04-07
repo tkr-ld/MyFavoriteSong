@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_secure_password validations: false
   
   has_many :setlists
-  has_many :musician_relationships
+  has_many :musician_relationships, dependent: :destroy
   has_many :favorites, through: :musician_relationships, source: :musician
-  has_many :setlist_relationships
+  has_many :setlist_relationships, dependent: :destroy
   has_many :joinlives, through: :setlist_relationships, source: :setlist
 
   def self.find_or_create_from_auth(auth)
