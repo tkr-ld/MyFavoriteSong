@@ -17,10 +17,11 @@ class User < ApplicationRecord
     uid = auth[:uid]
     name = auth[:info][:name]
     #画像を投稿できるようにしたら追加
-    #image = auth[:info][:image]
-
+    image = auth[:info][:image]
+    
     self.find_or_create_by(provider: provider, uid: uid) do |user|
       user.name = name
+      user.image_url = image
     end
   end
   
