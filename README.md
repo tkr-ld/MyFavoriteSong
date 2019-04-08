@@ -1,24 +1,39 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# 概要
 
 * Ruby version
 
-* System dependencies
+# 機能一覧
 
-* Configuration
+* ログイン機能
 
-* Database creation
+* Oauth認証（Twitter）
 
-* Database initialization
+* 画像登録も含めたミュージシャン登録機能
 
-* How to run the test suite
+* ミュージシャン検索機能
 
-* Services (job queues, cache servers, search engines, etc.)
+* セットリスト投稿機能
 
-* Deployment instructions
+* ライブに関するツイートの表示機能
 
-* ...
+* お気に入りのミュージシャンと参加したライブの登録機能
+
+* お気に入りのミュージシャンのセットリストが追加された際のメール送信機能 
+
+# 使用している技術一覧
+
+* Ruby on Rails
+
+* PostgreSQL
+
+* Heroku
+
+* deviseを使わずにログイン機能を実装し、TwitterのOauth認証にも対応
+
+* 検索にはRansackを使用
+
+* 画像の整形にはCarrierWaveを使用し、Cloudnary上にアップロード
+
+* セットリストの編集にはaccepts_nested_attributes_for、field_forを使用
+
+* メール送信機能にはActionMailerを使用し、ローカル環境ではletter_opener_webで動作確認
