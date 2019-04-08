@@ -33,6 +33,11 @@
           <div class="text-center">
             <h1>MyFavoriteSong</h1>
             <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+            <br>
+            <br>
+            <%= link_to '/auth/twitter', class: "btn btn-social btn-twitter" do %>
+              <span class="fa fa-twitter"></span> Twitteでログイン
+            <% end %>
           </div>
         </div>
         <div class="container">

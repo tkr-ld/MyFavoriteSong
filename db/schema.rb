@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190322080401) do
+ActiveRecord::Schema.define(version: 20190408004728) do
 
   create_table "musician_relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20190322080401) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "image_url"
   end
 
   add_foreign_key "musician_relationships", "musicians"

@@ -1,16 +1,29 @@
 class User < ApplicationRecord
-  before_save { self.email.downcase! }
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, length: { maximum: 255 },
+  before_save :email_downcase, unless: :uid?
+  validates :name, presence: true, unless: :uid?, length: { maximum: 50 }
+  validates :email, presence: true, unless: :uid?, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
-  has_secure_password
+  has_secure_password validations: false
   
   has_many :setlists
-  has_many :musician_relationships
+  has_many :musician_relationships, dependent: :destroy
   has_many :favorites, through: :musician_relationships, source: :musician
-  has_many :setlist_relationships
+  has_many :setlist_relationships, dependent: :destroy
   has_many :joinlives, through: :setlist_relationships, source: :setlist
+
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+    #画像を投稿できるようにしたら追加
+    image = auth[:info][:image]
+    
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.name = name
+      user.image_url = image
+    end
+  end
   
   def favorite(musician)
       self.musician_relationships.find_or_create_by(musician_id: musician.id)
@@ -36,5 +49,11 @@ class User < ApplicationRecord
     
   def joinning?(setlist)
       self.joinlives.include?(setlist)
+  end
+
+  private
+
+  def email_downcase
+    self.email.downcase!
   end
 end

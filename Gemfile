@@ -76,3 +76,9 @@ end
 gem 'letter_opener_web', group:  :development
 
 gem 'twitter'
+
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
