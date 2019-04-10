@@ -9,11 +9,11 @@
       </div>
     </div>
   </aside>
-      <div class="col-xs-12 col-md-7">
+      <div class="col-xs-12 col-md-4">
         <h3><%= link_to 'Favorite Musician', favorites_user_path(@user) %><span class="badge"><%= @count_favorites %></span></h3>
       <%= render 'musicians', musicians: @favorites %>
       </div>
-      <div class="col-xs-12 col-md-7">
+      <div class="col-xs-12 col-md-5">
         <h3><%= link_to 'Joined Live', joinlives_user_path(@user) %><span class="badge"><%= @count_joined %></span></h3>
       <%= render 'setlists', setlists: @joinlives %>
       </div>
