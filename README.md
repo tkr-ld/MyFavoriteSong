@@ -22,7 +22,9 @@
 
 # 使用している技術一覧
 
-* Ruby on Rails
+* Ruby 2.4.1
+
+* Ruby on Rails 5.0.7
 
 * PostgreSQL
 
