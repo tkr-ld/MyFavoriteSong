@@ -27,7 +27,7 @@
       <div class="form-inline">
         <%= form_for [@setlist, @song] do |f| %>
             <%= f.label :trackorder, '曲順' %>
-            <%= f.number_field :trackorder, value: @setlist.songs.count + 1, in: 0...201, class: 'form-control' %>
+            <%= f.number_field :trackorder, value: @setlist.new_song_number, in: 0...201, class: 'form-control' %>
             <%= f.label :title, '曲名' %>
             <%= f.text_field :title, class: 'form-control' %>
 
