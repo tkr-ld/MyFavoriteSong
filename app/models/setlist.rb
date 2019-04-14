@@ -8,4 +8,13 @@ class Setlist < ApplicationRecord
   accepts_nested_attributes_for :songs
   
   validates :title, presence: true, length: { maximum: 100 }
+
+  def new_song_number
+    max = 0
+    songs.all.each do |song| 
+      max = song.trackorder if song.trackorder > max
+    end
+    return max + 1
+  end
+
 end
