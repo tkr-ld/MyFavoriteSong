@@ -14,7 +14,7 @@ class Setlist < ApplicationRecord
     songs.all.each do |song| 
       max = song.trackorder if song.trackorder > max
     end
-    return max + 1
+    max + 1
   end
 
 end
