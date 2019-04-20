@@ -3,12 +3,12 @@ class Song < ApplicationRecord
 
   validates :trackorder, presence: true
   validates :title, presence: true, length: { maximum: 50 }
-  validate :unique_in_setlist_create, on: :create
+  validate :unique_in_setlist, on: :create
 
   private
 
   #同じセットリスト内での曲順の重複を禁止
-  def unique_in_setlist_create
+  def unique_in_setlist
     setlist_id = self.setlist_id
     setlist = Setlist.find(setlist_id)
     songs = setlist.songs.all

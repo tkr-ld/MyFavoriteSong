@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MyFavoriteSong</title>
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    .jumbotron { 
+      background:url(<%= asset_path 'main.jpg' %>) center no-repeat; 
+      background-size: cover;
+      margin-top: -20px; 
+      border: 0px;
+      padding-bottom: 100px;
+      padding-top: 100px
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/flash_messages' %>
+        <div class="center jumbotron"> 
+          <div class="text-center">
+            <h1 id="main_title">MyFavoriteSong</h1>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
+
+          <br>
+
+          <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+
+          <br>
+          <br>
+
+          <%= link_to '/auth/twitter', class: "btn btn-social btn-twitter" do %>
+            <span class="fa fa-twitter"></span> Twitterでログイン
+          <% end %>
+
+          <%= link_to '/auth/facebook', class: "btn btn-social btn-facebook" do %>
+            <span class="fa fa-facebook"></span> Facebookでログイン
+          <% end %>
+          
+        </div>
+        <div class="container">
+          <div class="col-xs-12 col-lg-offset-2 col-lg-8">
+            <div class="text-center">
+              <% if @setlists.any? %>
+                <h3 class="text-muted"><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</h3>
+                <table class="table">
+                  <% @setlists.each do |setlist| %>
+                    <tr class="text-left">
+                      <td class="text-center"><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+                      <td class="text-center"><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <%= render 'layouts/copyright' %>
+    </div>
+  </body>
+</html>
+
