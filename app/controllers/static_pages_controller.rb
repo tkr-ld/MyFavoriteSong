@@ -1,5 +1,5 @@
-class ToppagesController < ApplicationController
-  def index
+class StaticPagesController < ApplicationController
+  def home
     if logged_in?
       redirect_to user_path(current_user) and return
     else
@@ -7,5 +7,7 @@ class ToppagesController < ApplicationController
       render :layout => nil and return
     end
   end
-end
 
+  def description
+  end
+end

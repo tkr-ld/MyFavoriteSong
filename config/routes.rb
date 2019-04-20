@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-    root to: 'toppages#index'
+    root to: 'static_pages#home'
+
+    get 'home', to: 'static_pages#home'
+    get 'description', to: 'static_pages#description'
     
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
     
     get 'signup', to: 'users#new'
+    
     resources :users, only: [:index, :show, :new, :create] do
       member do
         get :favorites
