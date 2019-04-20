@@ -1,6 +1,49 @@
-<div class="text-left">
-  <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザーがミュージシャンのセットリストを登録し、共有するサービスです</h4>
-  <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録しなくても、セットリストを投稿することはできませんが、閲覧・編集することはできます</h4>
-  <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>ユーザー登録するとお気に入りのミュージシャンと参加したライブを登録することができるようになります</h4>
-  <h4 class="text-muted"><span class=" glyphicon glyphicon-hand-right"></span>まずは右上の検索バーからミュージシャンを検索してみましょう</h4>
+<div class="text-center">
+  <%= image_tag 'live.jpg' %>
+</div>
+
+<br>
+
+<div class="col-lg-offset-1 col-sm-offset-0 col-lg-10 col-sm-12 text-left">
+  <h4><strong>1997年に日本で初めてロック・フェスティバルが開催されてから年々フェスは増え続けています。近年ではフェスやライブに行くことがブームとなっており、自分の行ったライブのセットリストを後から確認したり、これから行くライブの予習をしたいということもあると思います。</strong></h4>
+  <h4><strong>このMyFavoriteSongではユーザー同士が共有する形でセットリストを共有することができます。</strong></h4>
+
+  <br>
+
+  <h2><strong>セットリストの登録方法</strong></h2>
+  <ol>
+    <h4><strong><li>ログインしましょう（ログインしなくても、セットリストの閲覧・編集は行うことができます）</li></strong></h4>
+    <h4><strong><li>セットリストを追加したいミュージシャンを右上の検索バーから検索してください</li></strong></h4>
+    <h4>もし、ミュージシャンが登録されていなければ「+Add Musician」からミュージシャンを追加してください</h4>
+    <%= image_tag 'add_musician.png',:size => '640x288' %>
+    <h4><strong><li>ミュージシャンページの「+Add Setlist」からセットリストを追加してください</li></strong></h4>
+  </ol>
+
+  <br>
+
+  <h2 class="text-muted"><strong>その他機能</strong></h2>
+
+  <div class="col-lg-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>メール通知機能</strong></h3>
+      </div>
+      <div class="panel-body text-center">
+        <%= image_tag 'mail.png' ,:size =>'100x100' %>
+        <h4>ユーザーがお気に入りに登録したミュージシャンのセットリストが追加されるとメールで通知されます。</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Twitter連携機能</strong></h3>
+      </div>
+      <div class="panel-body text-center">
+        <%= image_tag 'twitter.png' ,:size =>'100x100' %>
+        <h4>ライブに関する直近1週間以内のツイートを表示します。twitterアカウントでログインすることも可能です。</h4>
+      </div>
+    </div>
+  </div>
 </div>
