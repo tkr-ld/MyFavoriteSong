@@ -22,9 +22,8 @@
       </table>
     </div>
 
-    <div class="inline-left"><%= render 'setlist_relationships/join_button', setlist: @setlist %></div>
+    <div class="col-lg-offset-1 inline-left"><%= render 'setlist_relationships/join_button', setlist: @setlist %></div>
     <div class="inline-right"><%= link_to 'edit', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %></div>
-
     <div>
       <table class="table">
         <tr>
@@ -49,16 +48,11 @@
 
     <% if @tweets.present? %>
       <div class="col-xs-12">
-        <table class="table">
-          <tr>
-            <th class="text-left">このライブに関するツイート</th>
-          </tr>
+        <h4 class="text-left"><span class="fa fa-twitter"></span><strong>このライブに関連するツイート</strong></h4>
+          <ul class="list-group">
           <% @tweets.each do |tweet| %> 
-            <tr>
-              <td><%= tweet.contents %></td>
-            </tr>
+              <li class="list-group-item"><%= tweet.contents %></li>
           <% end %>
-        </table>
       </div>
     <% end %>
 
