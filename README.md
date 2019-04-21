@@ -30,7 +30,7 @@
 
 * Heroku
 
-* deviseを使わずにログイン機能を実装し、TwitterのOauth認証にも対応
+* deviseを使わずにログイン機能を実装し、Twitter、FacebookのOauth認証にも対応
 
 * 検索にはRansackを使用
 
