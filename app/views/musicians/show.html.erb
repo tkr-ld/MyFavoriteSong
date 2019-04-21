@@ -1,8 +1,8 @@
 <div class="row">
   <aside class="col-xs-12 col-lg-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h1 class="panel-title"><%= @musician.name %></h1>
+    <div class="panel musician_panel">
+      <div class="panel-heading musician_heading">
+        <h1 class="panel-title musician_name"><strong><%= @musician.name %></strong></h1>
       </div>
       <div class="panel-body">
         <%= image_tag(@musician.image.url, class:"img-responsive") if @musician.image.present? %>
@@ -16,7 +16,7 @@
     
   </aside>
   <div class="col-xs-12 col-lg-8">
-      <div class="panel panel-default">
+      <div class="panel">
         <div class="panel-body">
           <h5><%= simple_format(@musician.detail) %></h5>
         </div>
