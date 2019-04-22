@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col-xs-12">
-
     <div>
       <table class="table">
         <tr>
@@ -22,8 +21,12 @@
       </table>
     </div>
 
-    <div class="col-lg-offset-1 inline-left"><%= render 'setlist_relationships/join_button', setlist: @setlist %></div>
+    <div class="inline-left"><%= render 'setlist_relationships/join_button', setlist: @setlist %></div>
     <div class="inline-right"><%= link_to 'edit', edit_setlist_path(@setlist), class: 'btn btn-primary btn-xs' %></div>
+
+    <br>
+    <br>
+
     <div>
       <table class="table">
         <tr>
@@ -57,7 +60,7 @@
     <% end %>
 
     <div class="inline-left">
-      <%= link_to musician_path(@setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= @setlist.musician.name %><% end %>
+      <%= link_to musician_path(@setlist.musician), class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-user"></span><%= @setlist.musician.name %><% end %>
     </div>
   </div>
 </div>
