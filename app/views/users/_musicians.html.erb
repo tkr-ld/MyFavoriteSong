@@ -1,9 +1,9 @@
 <% if musicians.any? %>
   <table class="table">
-  <% musicians.each do |musician| %>
-    <tr class="text-left">
-      <td><%= link_to musician_path(musician),class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
-    </tr>
-  <% end %>
+    <% musicians.each do |musician| %>
+      <tr class="text-left">
+        <td><%= link_to musician_path(musician),class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
+      </tr>
+    <% end %>
   </table>
 <% end %>

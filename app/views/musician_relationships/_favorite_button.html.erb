@@ -1,13 +1,13 @@
 <% if logged_in? %>
   <% if current_user.favoriting?(musician) %>
-      <%= form_for(current_user.musician_relationships.find_by(musician_id: musician.id), html: { method: :delete }) do |f| %>
-        <%= hidden_field_tag :musician_id, musician.id %>
-        <%= f.submit 'Unfavorite', class: 'btn btn-default btn-md' %>
-      <% end %>
-    <% else %>
-      <%= form_for(current_user.musician_relationships.build) do |f| %>
-        <%= hidden_field_tag :musician_id, musician.id %>
-        <%= f.submit 'Favorite', class: 'btn btn-info btn-md' %>
-      <% end %>
+    <%= form_for(current_user.musician_relationships.find_by(musician_id: musician.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :musician_id, musician.id %>
+      <%= f.submit 'Unfavorite', class: 'btn btn-default btn-md' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.musician_relationships.build) do |f| %>
+      <%= hidden_field_tag :musician_id, musician.id %>
+      <%= f.submit 'Favorite', class: 'btn btn-info btn-md' %>
+    <% end %>
   <% end %>
 <% end %>

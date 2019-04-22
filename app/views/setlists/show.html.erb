@@ -49,10 +49,10 @@
     <% if @tweets.present? %>
       <div class="col-xs-12">
         <h4 class="text-left"><span class="fa fa-twitter"></span><strong>このライブに関連するツイート</strong></h4>
-          <ul class="list-group">
-          <% @tweets.each do |tweet| %> 
-              <li class="list-group-item"><%= tweet.contents %></li>
-          <% end %>
+        <ul class="list-group">
+        <% @tweets.each do |tweet| %> 
+            <li class="list-group-item"><%= tweet.contents %></li>
+        <% end %>
       </div>
     <% end %>
 

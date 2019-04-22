@@ -21,29 +21,29 @@
     
   </aside>
   <div class="col-xs-12 col-lg-8">
-      <div class="panel">
-        <div class="panel-body">
-          <h5><%= simple_format(@musician.detail) %></h5>
-        </div>
+    <div class="panel">
+      <div class="panel-body">
+        <h5><%= simple_format(@musician.detail) %></h5>
       </div>
-      <div class="page-header">
+    </div>
+    <div class="page-header">
       <h3 class="font_lg"><strong>セットリスト一覧<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></strong></h3>
-      </div>
-        <table class="table">
-          <tr>
-            <th class="text-left">ライブ名</th>
-            <th class="text-left">場所</th>
-            <th class="text-left">日付</th>
-            <th></th>
-          </tr>
-          <% @setlists.each do |setlist|  %>
-            <tr>
-              <td><%= link_to setlist_path(setlist),class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
-              <td><span class="text-muted"><%= setlist.place %></span></td>
-              <td><span class="text-muted"><%= setlist.date %></span></td>
-              <td><%= render 'setlist_relationships/join_button', setlist: setlist %></td>
-            </tr>
-          <% end %>
-        </table>
+    </div>
+    <table class="table">
+      <tr>
+        <th class="text-left">ライブ名</th>
+        <th class="text-left">場所</th>
+        <th class="text-left">日付</th>
+        <th></th>
+      </tr>
+      <% @setlists.each do |setlist|  %>
+        <tr>
+          <td><%= link_to setlist_path(setlist),class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
+          <td><span class="text-muted"><%= setlist.place %></span></td>
+          <td><span class="text-muted"><%= setlist.date %></span></td>
+          <td><%= render 'setlist_relationships/join_button', setlist: setlist %></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>
