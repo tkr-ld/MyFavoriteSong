@@ -51,6 +51,32 @@ h4 {
   background-color: #629c89;
 }
 
+.link_hover {
+  font-family: メイリオ;
+  color: #007766;
+}
+
+.font_lg {
+  font-family: メイリオ;
+  color: #007766;
+}
+
+.link_hover:hover {
+  color: #007766;
+  font-size: 110%;
+}
+
+.link_hover_sm {
+  font-family: メイリオ;
+  color: black;
+}
+
+.link_hover_sm:hover {
+  color: #007766;
+
+}
+
+
 .musician_panel {
   border: 10px;
 }

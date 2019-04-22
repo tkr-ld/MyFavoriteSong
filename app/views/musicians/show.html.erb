@@ -6,8 +6,13 @@
       </div>
       <div class="panel-body">
         <%= image_tag(@musician.image.url, class:"img-responsive") if @musician.image.present? %>
-        <br>
-        <%= link_to 'edit musician', edit_musician_path(@musician)%>
+
+        <h4 class="inline-right">
+          <%= link_to edit_musician_path(@musician),class: "link_hover_sm" do %>
+            <span class="glyphicon glyphicon-cog"></span>
+          <% end %>
+        </h4>
+
       </div>
     </div>
     <div class="center-block">
@@ -22,7 +27,7 @@
         </div>
       </div>
       <div class="page-header">
-      <h3>セットリスト一覧<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></h3>
+      <h3 class="font_lg"><strong>セットリスト一覧<%= link_to '+Add Setlist', new_setlist_path(musician_id: @musician.id), class: 'btn-warning btn-xs'%></strong></h3>
       </div>
         <table class="table">
           <tr>
@@ -33,7 +38,7 @@
           </tr>
           <% @setlists.each do |setlist|  %>
             <tr>
-              <td><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
+              <td><%= link_to setlist_path(setlist),class: "link_hover_sm" do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><span class="badge"><%= setlist.songs.count %><% end %></td>
               <td><span class="text-muted"><%= setlist.place %></span></td>
               <td><span class="text-muted"><%= setlist.date %></span></td>
               <td><%= render 'setlist_relationships/join_button', setlist: setlist %></td>

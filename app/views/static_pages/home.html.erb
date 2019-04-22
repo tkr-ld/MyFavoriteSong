@@ -60,12 +60,12 @@
           <div class="col-xs-12 col-lg-offset-2 col-lg-8">
             <div class="text-center">
               <% if @setlists.any? %>
-                <h3 class="text-muted"><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</h3>
+                <h3 class="font_lg"><strong><span class=" glyphicon glyphicon-music"></span>最近追加されたセットリスト</strong></h3>
                 <table class="table">
                   <% @setlists.each do |setlist| %>
                     <tr class="text-left">
-                      <td class="text-center"><%= link_to setlist_path(setlist) do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
-                      <td class="text-center"><%= link_to musician_path(setlist.musician) do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
+                      <td class="text-center"><%= link_to setlist_path(setlist), class: "link_hover_sm"  do %> <span class=" glyphicon glyphicon-music"></span><%= setlist.title%><% end %></td>
+                      <td class="text-center"><%= link_to musician_path(setlist.musician), class: "link_hover_sm"  do %> <span class=" glyphicon glyphicon-user"></span><%= setlist.musician.name%><% end %></td>
                     </tr>
                   <% end %>
                 </table>

@@ -1,7 +1,3 @@
-<div class="text-left page-header">
-  <h2>Search Musician</h2>
-</div>
-<br>
 <div class="col-xs-12 col-md-10 col-lg-8">
   <% if @musicians.present? %>
     <table class="table">
@@ -11,7 +7,7 @@
       </tr>
       <% @musicians.each do |musician| %>
         <tr class="text-left">
-          <td><%= link_to musician_path(musician) do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
+          <td><%= link_to musician_path(musician),class: "link_hover_sm"  do %> <span class=" glyphicon glyphicon-user"></span><%= musician.name%><% end %></td>
           <td><%= render 'musician_relationships/favorite_button', musician: musician %></td>
         </tr>
       <% end %>
